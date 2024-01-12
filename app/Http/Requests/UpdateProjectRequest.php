@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateProjectRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateProjectRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,21 @@ class UpdateProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => ['required', 'min:3', 'max:200', Rule::unique('posts')->ignore($this->post)],
+            'body' => ['nullable'],
+            'image' => ['nullable', 'url'],
+            'url' => ['nullable', 'url'],
+        ];
+    }
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'The title field is required.',
+            'title.min' => 'The title must be at least :min characters.',
+            'title.max' => 'The title must not be greater than :max characters.',
+            'title.unique' => 'The title is already used.',
+            'image.url' => 'The image must be a valid URL.',
+            'url.url' => 'The url must be a valid URL.',
         ];
     }
 }
