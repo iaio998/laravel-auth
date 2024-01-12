@@ -39,7 +39,7 @@ class ProjectController extends Controller
         $data['slug'] = $slug;
         $data['user_id'] = Auth::id();
         $project = Project::create($data);
-        return redirect()->route('admin.posts.show', $project);
+        return redirect()->route('admin.projects.show', $project);
     }
 
     /**
