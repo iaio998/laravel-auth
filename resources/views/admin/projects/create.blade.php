@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h1>Create</h1>
-    <form action="{{route('admin.projects.store')}}" method="POST">
+    <form action="{{route('admin.projects.store')}}" enctype="multipart/form-data" method="POST">
         @csrf
         <div class="mb-3">
             <label for="title">Title:</label>
@@ -23,7 +23,7 @@
         </div>
         <div class="mb-3">
             <label for="image">Image URL:</label>
-            <input type="text" class="form-control @error('image') is-invalid @enderror" name="image" id="image"
+            <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image"
                 maxlength="200" minlength="3" value="{{old('image')}}">
             @error('image')
             <div class="invalid-feedback">{{ $message }}</div>

@@ -173,7 +173,12 @@ php artisan make:model Nome -rcms --requests
 
 php artisan make:request StoreMomemodelRequest
 
+#collego lo storage al public
+nel filesystem.php -> 'default' => env('FILESYSTEM_DISK', 'public'),
+nel file env -> FILESYSTEM_DISK=public
 
+#alla fine lancio
+php artisan storage:link
 ```
 
 ```bash

@@ -5,7 +5,7 @@
     <button class="btn btn-success"><a href="{{route('admin.projects.edit', $project)}}">Edit</a></button>
     <div class="col-4 col-md-4 text-center g-2">
         <div class="img-cont">
-            <img src="{{ $project->image }}" alt="{{$project->title}}">
+            <img src="{{ asset('storage/' . $project->image) }}" alt="{{$project->title}}">
         </div>
         <div class="">
             <h2 class="fs-4">

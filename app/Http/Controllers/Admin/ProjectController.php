@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -38,6 +39,10 @@ class ProjectController extends Controller
         $slug = Str::slug($data['title']);
         $data['slug'] = $slug;
         $data['user_id'] = Auth::id();
+        if ($request->hasFile('image')) {
+            $path = Storage::put('images', $request->image);
+            $data['image'] = $path;
+        }
         $project = Project::create($data);
         return redirect()->route('admin.projects.show', $project);
     }
