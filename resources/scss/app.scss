@@ -10,19 +10,39 @@ $fa-font-path: "../fonts/webfonts" !default;
 @import '~bootstrap/scss/bootstrap';
 
 h1 {
-    color: $text-color;
+    color: red;
+}
+body{
+    width: 100%;
+    height: 100vh;
+color: white;
+    nav{
+        width: 100%;
+        height: 8vh;
+        background-color: black;
+    
+    }
+    main{
+        width: 100%;
+        height: 92vh;
+        background-color: rgba(0, 0, 0, 0.658) ;
+    }
 }
 a{
     text-decoration: none;
-    color: black ;
+    color: white ;
 }
 ul{
     list-style: none;
 }
 .img-cont{
+    width: 200px;
+    height: 100px;
+    margin: 0 auto;
     img{
         width: 100%;
         height: 100%;
-    
+        object-fit: cover;
+
     }
 }

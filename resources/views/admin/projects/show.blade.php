@@ -2,8 +2,9 @@
 @section('content')
 <div class="container">
     <h1>Show</h1>
-    <button class="btn btn-success"><a href="{{route('admin.projects.edit', $project)}}">Edit</a></button>
-    <div class="col-4 col-md-4 text-center g-2">
+
+    <div class="col-12 col-md-12 text-center g-2">
+        <button class="btn btn-success"><a href="{{route('admin.projects.edit', $project)}}">Edit</a></button>
         <div class="img-cont">
             <img src="{{ asset('storage/' . $project->image) }}" alt="{{$project->title}}">
         </div>
