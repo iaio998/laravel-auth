@@ -37,7 +37,7 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
         // $slug = Str::slug($data['title']);
-        $slug = Project::getSlug($data['name'], '-');
+        $slug = Project::getSlug($data['title'], '-');
         $data['slug'] = $slug;
         $data['user_id'] = Auth::id();
         if ($request->hasFile('image')) {
@@ -77,8 +77,8 @@ class ProjectController extends Controller
         // $slug = Str::slug($data['title']);
         // $data['slug'] = $slug;
         $data['user_id'] = Auth::id();
-        if ($project->title !== $data['name']) {
-            $slug = Project::getSlug($data['name'], '-');
+        if ($project->title !== $data['title']) {
+            $slug = Project::getSlug($data['title'], '-');
         } else {
             $slug = $project->slug;
         }
