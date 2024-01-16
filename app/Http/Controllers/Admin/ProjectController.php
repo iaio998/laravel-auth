@@ -36,7 +36,8 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $data = $request->validated();
-        $slug = Str::slug($data['title']);
+        // $slug = Str::slug($data['title']);
+        $slug = Project::getSlug($data['name'], '-');
         $data['slug'] = $slug;
         $data['user_id'] = Auth::id();
         if ($request->hasFile('image')) {
@@ -73,11 +74,17 @@ class ProjectController extends Controller
         //     //CREATE SLUG
         //     $slug = Project::getSlug($data['title']);
         // }
-        $slug = Str::slug($data['title']);
-        $data['slug'] = $slug;
+        // $slug = Str::slug($data['title']);
+        // $data['slug'] = $slug;
         $data['user_id'] = Auth::id();
+        if ($project->title !== $data['name']) {
+            $slug = Project::getSlug($data['name'], '-');
+        } else {
+            $slug = $project->slug;
+        }
+        $data['slug'] = $slug;
         if ($request->hasFile('image')) {
-            if ($project->image) {
+            if (Storage::exists($project->image)) {
                 Storage::delete($project->image);
             }
             $path = Storage::put('images', $request->image);
